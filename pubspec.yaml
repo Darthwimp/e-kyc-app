@@ -42,8 +42,6 @@ dependencies:
   provider: ^6.1.2
   signature: ^5.4.1
   kommunicate_flutter: ^1.8.4
-  firebase_auth: ^4.17.9
-  firebase_core: ^2.27.1
   firebase_app_check: ^0.2.1+18
   twilio_flutter: ^0.3.0
 

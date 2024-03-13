@@ -1,5 +1,4 @@
 import 'package:e_kyc_app/auth/otp_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -19,58 +18,6 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       _verificationInProgress = true;
     });
-
-    try {
-      print('Phone number: ${_phoneNumberController.text}');
-      await FirebaseAuth.instance.verifyPhoneNumber(
-        phoneNumber: '+91 ${_phoneNumberController.text}',
-        verificationCompleted: (PhoneAuthCredential credential) async {
-          await FirebaseAuth.instance.signInWithCredential(credential);
-          // Authentication successful, navigate to next screen
-          // For now, just print a message
-          print('Authentication successful!');
-        },
-        verificationFailed: (FirebaseAuthException e) {
-          print('Phone number verification failed. Code: ${e.code}');
-          // Handle verification failure, if necessary
-        },
-        codeSent: (String verificationId, int? resendToken) {
-          print(
-              "Code sent to ${_phoneNumberController.text} code: $verificationId");
-          setState(() {
-            _verificationInProgress = false;
-            _verificationId = verificationId;
-          });
-        },
-        codeAutoRetrievalTimeout: (String verificationId) {
-          setState(() {
-            _verificationInProgress = false;
-            _verificationId = verificationId;
-          });
-        },
-        timeout: const Duration(seconds: 60),
-      );
-    } catch (e) {
-      print('Failed to verify phone number: $e');
-      // Handle verification failure, if necessary
-    }
-  }
-
-  Future<void> _signInWithPhoneNumber() async {
-    try {
-      final PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: _verificationId,
-        smsCode: _otpController.text,
-      );
-
-      await FirebaseAuth.instance.signInWithCredential(credential);
-      // Authentication successful, navigate to next screen
-      // For now, just print a message
-      print('Authentication successful!');
-    } catch (e) {
-      print('Failed to sign in: $e');
-      // Handle sign-in failure, if necessary
-    }
   }
 
   @override

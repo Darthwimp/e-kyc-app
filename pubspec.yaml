@@ -41,6 +41,7 @@ dependencies:
   easy_localization: ^3.0.5
   provider: ^6.1.2
   flutter_native_splash: ^2.3.13
+  signature: ^5.4.1
 
 dev_dependencies:
   flutter_test:

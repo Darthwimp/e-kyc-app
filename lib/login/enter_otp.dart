@@ -1,8 +1,8 @@
 import 'package:e_kyc_app/widgets/gradient_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:pinput/pinput.dart';
 
 class EnterOTP extends StatelessWidget {
   const EnterOTP({super.key});
@@ -12,6 +12,20 @@ class EnterOTP extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
+          Positioned(
+            top: 50.sp,
+            left: 30.sp,
+            child: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back_ios,
+                size: 20.sp,
+                color: Colors.black,
+              ),
+            ),
+          ),
           Positioned(
             top: 135.sp,
             child: Padding(
@@ -29,13 +43,13 @@ class EnterOTP extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   Gap(30.h),
-                  SizedBox(
-                    height: 60.h,
-                    width: 310.w,
-                    child: const Pinput(
-                      length: 5,
-                    ),
-                  )
+                  // SizedBox(
+                  //   height: 60.h,
+                  //   width: 310.w,
+                  //   child: const Pinput(
+                  //     length: 5,
+                  //   ),
+                  // )
                 ],
               ),
             ),

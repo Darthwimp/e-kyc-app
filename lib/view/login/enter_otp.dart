@@ -64,7 +64,7 @@ class EnterOTP extends StatelessWidget {
               child: GradientButton(
                 text: "Submit",
                 onPressed: () {
-                  print("clicked!");
+                  Navigator.pushNamed(context, '/chat-onBoard');
                 },
               ),
             ),

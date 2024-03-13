@@ -14,6 +14,7 @@ void main(List<String> args) async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(
     EasyLocalization(
       supportedLocales: const [

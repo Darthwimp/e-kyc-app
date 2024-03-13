@@ -1,3 +1,4 @@
+import 'package:e_kyc_app/auth/otp_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,8 @@ class _LoginPageState extends State<LoginPage> {
   final _otpController = TextEditingController();
   String _verificationId = "";
   bool _verificationInProgress = false;
+
+  final OTPAuthClass _otpAuthClass = OTPAuthClass();
 
   Future<void> _verifyPhoneNumber() async {
     setState(() {
@@ -32,6 +35,8 @@ class _LoginPageState extends State<LoginPage> {
           // Handle verification failure, if necessary
         },
         codeSent: (String verificationId, int? resendToken) {
+          print(
+              "Code sent to ${_phoneNumberController.text} code: $verificationId");
           setState(() {
             _verificationInProgress = false;
             _verificationId = verificationId;
@@ -89,7 +94,11 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: _verificationInProgress ? null : _verifyPhoneNumber,
+                onPressed: _verificationInProgress
+                    ? null
+                    : () {
+                        _otpAuthClass.sendOTP("8676874867");
+                      },
                 child: _verificationInProgress
                     ? CircularProgressIndicator()
                     : Text('Send OTP'),
@@ -104,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 20),
               ElevatedButton(
-                onPressed: _signInWithPhoneNumber,
+                onPressed: () {},
                 child: Text('Verify OTP'),
               ),
             ],

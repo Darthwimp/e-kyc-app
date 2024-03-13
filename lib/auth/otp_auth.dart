@@ -1,36 +1,16 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:twilio_flutter/twilio_flutter.dart';
 
 class OTPAuthClass {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  var verificationId = '';
+  final TwilioFlutter _twilioFlutter = TwilioFlutter(
+    accountSid: "ACbc9740375c6ae98472a8f4f14fb0ba21",
+    authToken: "7f108d2cc80a3ad6dfdc676a3101c8fe",
+    twilioNumber: "+16503833791",
+  );
 
-  Future<void> OTPAuth(BuildContext context, String phNo) async {
-    final String phoneNumber = phNo;
-    await _auth.verifyPhoneNumber(
-      phoneNumber: phoneNumber,
-      verificationCompleted: (PhoneAuthCredential credential) async {
-        await _auth.signInWithCredential(credential);
-      },
-      verificationFailed: (FirebaseAuthException e) {},
-      codeSent: (String verificationID, int? resendToken) {
-        verificationId = verificationId;
-        print("OTP sent! $verificationID $resendToken");
-      },
-      codeAutoRetrievalTimeout: (String verificationID) {
-        verificationId = verificationId;
-        print("Auto retrieval timeout! $verificationID");
-      },
+  Future<void> sendOTP(String number) async {
+    await _twilioFlutter.sendSMS(
+      toNumber: "+91$number",
+      messageBody: "Your OTP is 1234",
     );
-  }
-
-  Future<bool> verifyOTP(String otp) async {
-    FirebaseAuth _auth = FirebaseAuth.instance;
-    var credentials =
-        await _auth.signInWithCredential(PhoneAuthProvider.credential(
-      verificationId: verificationId,
-      smsCode: otp,
-    ));
-    return credentials.user != null ? true : false;
   }
 }

@@ -2,6 +2,8 @@ import 'package:e_kyc_app/auth/otp_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -9,22 +11,27 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _phoneNumberController = TextEditingController();
   final _otpController = TextEditingController();
-  String _verificationId = "";
   bool _verificationInProgress = false;
 
   final OTPAuthClass _otpAuthClass = OTPAuthClass();
 
-  Future<void> _verifyPhoneNumber() async {
-    setState(() {
-      _verificationInProgress = true;
-    });
+  // use this function to check the OTP and proceed to the next screen
+  void _checkOTP(String enteredOTP) {
+    bool res = _otpAuthClass.verifyOTP(_otpController.text);
+    if (res) {
+      // OTP correct
+      print(res);
+    } else {
+      // OTP incorrect
+      print(res);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Phone Login'),
+        title: const Text('Phone Login'),
       ),
       body: Center(
         child: Padding(
@@ -35,33 +42,35 @@ class _LoginPageState extends State<LoginPage> {
               TextField(
                 controller: _phoneNumberController,
                 keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Enter your phone number',
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _verificationInProgress
                     ? null
                     : () {
-                        _otpAuthClass.sendOTP("8676874867");
+                        _otpAuthClass.sendOTP(_phoneNumberController.text);
                       },
                 child: _verificationInProgress
-                    ? CircularProgressIndicator()
-                    : Text('Send OTP'),
+                    ? const CircularProgressIndicator()
+                    : const Text('Send OTP'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextField(
                 controller: _otpController,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Enter OTP',
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
-                onPressed: () {},
-                child: Text('Verify OTP'),
+                onPressed: () {
+                  _checkOTP(_otpController.text);
+                },
+                child: const Text('Verify OTP'),
               ),
             ],
           ),

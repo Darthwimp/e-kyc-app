@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "575334298885",
+    "project_id": "ekyc-8faf3",
+    "storage_bucket": "ekyc-8faf3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575334298885:android:d781cfd8039ab54920b36c",
+        "android_client_info": {
+          "package_name": "com.example.e_kyc_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCA-XNdpeDal48ymRJddTnpmUr6EsGWaRk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

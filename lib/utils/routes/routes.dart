@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 Map<String, WidgetBuilder> routes = {
   "lang": (context) => const Splash(),
-  "/": (context) => const EnterPhoneNumber(),
+  "/": (context) => LoginPage(),
   "/enter-otp": (context) => const EnterOTP(),
   "/chat-onBoard": (context) => const ChatOnboard(),
   "/chat-onBoard/chat-interface/verify-kyc": (context) => const VerifyKyc(),

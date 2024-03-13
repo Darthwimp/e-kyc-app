@@ -40,9 +40,10 @@ dependencies:
   gap: ^3.0.1
   easy_localization: ^3.0.5
   provider: ^6.1.2
-  flutter_native_splash: ^2.3.13
   signature: ^5.4.1
   kommunicate_flutter: ^1.8.4
+  firebase_auth: ^4.17.9
+  firebase_core: ^2.27.1
 
 dev_dependencies:
   flutter_test:

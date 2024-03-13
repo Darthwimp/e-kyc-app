@@ -1,42 +1,112 @@
-import 'package:e_kyc_app/widgets/gradient_button.dart';
-import 'package:e_kyc_app/widgets/phone_number_field.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
 
-class EnterPhoneNumber extends StatelessWidget {
-  const EnterPhoneNumber({super.key});
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _phoneNumberController = TextEditingController();
+  final _otpController = TextEditingController();
+  String _verificationId = "";
+  bool _verificationInProgress = false;
+
+  Future<void> _verifyPhoneNumber() async {
+    setState(() {
+      _verificationInProgress = true;
+    });
+
+    try {
+      print('Phone number: ${_phoneNumberController.text}');
+      await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: '+91 ${_phoneNumberController.text}',
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          await FirebaseAuth.instance.signInWithCredential(credential);
+          // Authentication successful, navigate to next screen
+          // For now, just print a message
+          print('Authentication successful!');
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          print('Phone number verification failed. Code: ${e.code}');
+          // Handle verification failure, if necessary
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          setState(() {
+            _verificationInProgress = false;
+            _verificationId = verificationId;
+          });
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          setState(() {
+            _verificationInProgress = false;
+            _verificationId = verificationId;
+          });
+        },
+        timeout: const Duration(seconds: 60),
+      );
+    } catch (e) {
+      print('Failed to verify phone number: $e');
+      // Handle verification failure, if necessary
+    }
+  }
+
+  Future<void> _signInWithPhoneNumber() async {
+    try {
+      final PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: _verificationId,
+        smsCode: _otpController.text,
+      );
+
+      await FirebaseAuth.instance.signInWithCredential(credential);
+      // Authentication successful, navigate to next screen
+      // For now, just print a message
+      print('Authentication successful!');
+    } catch (e) {
+      print('Failed to sign in: $e');
+      // Handle sign-in failure, if necessary
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30.sp),
-        child: SingleChildScrollView(
+      appBar: AppBar(
+        title: Text('Phone Login'),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Gap(160.sp),
-              Image.asset("assets/logo/logo-without-text.png"),
-              Gap(20.h),
-              Text(
-                'intro'.tr(),
-                style: Theme.of(context).textTheme.titleLarge,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextField(
+                controller: _phoneNumberController,
+                keyboardType: TextInputType.phone,
+                decoration: InputDecoration(
+                  hintText: 'Enter your phone number',
+                ),
               ),
-              Gap(20.h),
-              Text(
-                'mobile number'.tr(),
-                style: Theme.of(context).textTheme.bodyMedium,
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _verificationInProgress ? null : _verifyPhoneNumber,
+                child: _verificationInProgress
+                    ? CircularProgressIndicator()
+                    : Text('Send OTP'),
               ),
-              Gap(20.h),
-              const PhoneNumberField(),
-              Gap(200.sp),
-              GradientButton(
-                  text: 'OTP'.tr(),
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/enter-otp");
-                  })
+              SizedBox(height: 20),
+              TextField(
+                controller: _otpController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  hintText: 'Enter OTP',
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _signInWithPhoneNumber,
+                child: Text('Verify OTP'),
+              ),
             ],
           ),
         ),

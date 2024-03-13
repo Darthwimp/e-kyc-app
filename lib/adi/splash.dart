@@ -14,11 +14,11 @@ class Splash extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            //using tr() after the keyboard will do things automatically
-            Text(
-              'intro'.tr(),
-              style: const TextStyle(fontSize: 20),
-            ),
+            // //using tr() after the keyboard will do things automatically
+            // Text(
+            //   'intro'.tr(),
+            //   style: const TextStyle(fontSize: 20),
+            // ),
 
             ElevatedButton(
               onPressed: () {
@@ -51,6 +51,12 @@ class Splash extends StatelessWidget {
                   languageProvider.changeLanguage(const Locale('ta', 'IN'));
                 },
                 child: const Text('Tamil')),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/");
+              },
+              child: const Text('Next'),
+            )
           ],
         ),
       ),

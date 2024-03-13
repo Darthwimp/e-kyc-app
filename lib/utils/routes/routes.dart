@@ -7,9 +7,9 @@ import 'package:e_kyc_app/view/verify_kyc/verify_kyc.dart';
 import 'package:flutter/material.dart';
 
 Map<String, WidgetBuilder> routes = {
+  "lang": (context) => const Splash(),
   "/": (context) => const EnterPhoneNumber(),
   "/enter-otp": (context) => const EnterOTP(),
-  "/splash": (context) => const Splash(),
   "/chat-onBoard": (context) => const ChatOnboard(),
   "/chat-onBoard/chat-interface/verify-kyc": (context) => const VerifyKyc(),
   "/chat-onBoard/chat-interface/kyc-verified": (context) => const KycVerified(),

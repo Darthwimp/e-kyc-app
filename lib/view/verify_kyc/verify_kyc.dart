@@ -1,4 +1,5 @@
 import 'package:e_kyc_app/widgets/document_verify_card.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -28,24 +29,23 @@ class VerifyKyc extends StatelessWidget {
               ],
             ),
             Image.asset("assets/images/assthetic-card.png"),
-            Text("Let's verify KYC",
-                style: Theme.of(context).textTheme.titleLarge),
+            Text('lverify'.tr(), style: Theme.of(context).textTheme.titleLarge),
             Text(
-              "Please submit the following documents to verify your profile.",
+              'desc2'.tr(),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(),
             ),
-            const DocumentVerifyCard(
+            DocumentVerifyCard(
               icon: Icons.badge_outlined,
-              title: "Take a valid picture of your ID",
+              title: 'procedure1'.tr(),
               subtitle: "To check if your personal information is correct",
             ),
-            const DocumentVerifyCard(
+            DocumentVerifyCard(
               icon: Icons.camera_alt_outlined,
-              title: "Take a selfie of yourself",
+              title: 'procedure2'.tr(),
               subtitle: "To match your face to your ID photo",
             ),
             Text(
-              "Why is this needed?",
+              'why need'.tr(),
               style: GoogleFonts.lato(
                 fontWeight: FontWeight.bold,
                 decoration: TextDecoration.underline,

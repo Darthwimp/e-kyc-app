@@ -9,6 +9,10 @@ ThemeData themeData(){
         fontSize: 30.sp,
         fontWeight: FontWeight.bold,
       ),
+      displaySmall: GoogleFonts.lato(
+        fontSize: 12.sp,
+        color: const Color(0xfe535353),
+      ),
       bodyMedium: GoogleFonts.lato(
         fontSize: 17.sp,
         fontWeight: FontWeight.w400,

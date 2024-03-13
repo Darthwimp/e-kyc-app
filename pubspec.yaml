@@ -40,6 +40,7 @@ dependencies:
   gap: ^3.0.1
   easy_localization: ^3.0.5
   provider: ^6.1.2
+  flutter_native_splash: ^2.3.13
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,7 @@ flutter:
        - assets/
        - assets/logo/
        - assets/translations/
+       - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

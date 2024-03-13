@@ -6,13 +6,14 @@
     "E OTP":"Enter the OTP sent to",
     "RC":"Resend Code",
     "Chatty":"Hi! I'm Chatty",
-    "desc":"I will be helping you with the entire KYC process",
+    "desc":"I will be helping you with the entire\n KYC process",
     "lverify":"Lets verify KYC",
     "desc2":"Please submit the following documents verify your profile",
     "procedure1":"Take a picture of your valid ID",
     "procedure2":"Take a selfie of yourself",
     "why need":"Why is this needed?",
-    "Congrats":"Congrats,youre in!",
-    "desc3":"Thank you! Your account is being verified. You will be notified by SMS shortly."
+    "Congrats":"Congrats,\nyoure in!",
+    "desc3":"Thank you! Your account is being verified. You will be notified by SMS shortly.",
+    "Submit":"Submit"
 
 }

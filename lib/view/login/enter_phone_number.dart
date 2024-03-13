@@ -1,5 +1,6 @@
 import 'package:e_kyc_app/widgets/gradient_button.dart';
 import 'package:e_kyc_app/widgets/phone_number_field.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -20,20 +21,22 @@ class EnterPhoneNumber extends StatelessWidget {
               Image.asset("assets/logo/logo-without-text.png"),
               Gap(20.h),
               Text(
-                "Welcome to Standard Chartered",
+                'intro'.tr(),
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               Gap(20.h),
               Text(
-                "Enter your mobile number",
+                'mobile number'.tr(),
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               Gap(20.h),
               const PhoneNumberField(),
               Gap(200.sp),
-              GradientButton(text: "Send OTP", onPressed: () {
-                Navigator.pushNamed(context, "/enter-otp");
-              })
+              GradientButton(
+                  text: 'OTP'.tr(),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/enter-otp");
+                  })
             ],
           ),
         ),

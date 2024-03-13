@@ -2,8 +2,17 @@
     "intro":"Welcome to Standard Chartered.",
     "mobile number":"Enter your mobile number",
     "OTP":"Get OTP",
-    "Verify IY": "Verify it’s you",
+    "Verify IY": "Verify its you",
     "E OTP":"Enter the OTP sent to",
-    "RC":"Resend Code"
+    "RC":"Resend Code",
+    "Chatty":"Hi! I'm Chatty",
+    "desc":"I will be helping you with the entire KYC process",
+    "lverify":"Lets verify KYC",
+    "desc2":"Please submit the following documents verify your profile",
+    "procedure1":"Take a picture of your valid ID",
+    "procedure2":"Take a selfie of yourself",
+    "why need":"Why is this needed?",
+    "Congrats":"Congrats,youre in!",
+    "desc2":"Thank you! Your account is being verified. You will be notified by SMS shortly."
 
 }

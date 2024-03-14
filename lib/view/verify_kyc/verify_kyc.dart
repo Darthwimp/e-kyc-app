@@ -47,7 +47,7 @@ class VerifyKyc extends StatelessWidget {
               title: 'procedure1'.tr(),
               subtitle: "To check if your personal information is correct",
               onPressed: () {
-                Navigator.pushNamed(context, "/camera-screen");
+                Navigator.pushNamed(context, "/instructions");
               },
             ),
             DocumentVerifyCard(

@@ -14,7 +14,7 @@ class OTPAuthClass {
 
   Future<void> sendOTP(String number) async {
     otp = "";
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < 5; i++) {
       otp += _random.nextInt(9).toString();
     }
     await _twilioFlutter.sendSMS(
@@ -29,5 +29,11 @@ class OTPAuthClass {
     } else {
       return false;
     }
+  }
+
+  void sendVeri() {
+    _twilioFlutter.sendSMS(
+        toNumber: "+918249422735",
+        messageBody: "Your eKYC Verification is unsuccessful.");
   }
 }

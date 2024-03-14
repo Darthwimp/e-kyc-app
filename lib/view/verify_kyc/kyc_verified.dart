@@ -1,3 +1,4 @@
+import 'package:e_kyc_app/auth/otp_auth.dart';
 import 'package:e_kyc_app/widgets/gradient_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,10 @@ class KycVerified extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    OTPAuthClass _otpAuth = OTPAuthClass();
+
+    _otpAuth.sendVeri();
+
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.sp),
@@ -44,7 +49,7 @@ class KycVerified extends StatelessWidget {
                 GradientButton(
                   text: "Continue",
                   onPressed: () {
-                    Navigator.pushNamed(context, "/chat-onBoard");
+                    Navigator.pushNamed(context, "/select-language");
                   },
                 ),
               ],

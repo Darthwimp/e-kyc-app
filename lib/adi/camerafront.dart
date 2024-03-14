@@ -115,16 +115,18 @@ class _CameraScreenState extends State<CameraScreenFront> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Camera Example'),
-      ),
       body: FutureBuilder<void>(
         future: _initializeControllerFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return Stack(
               children: [
-                CameraPreview(_controller),
+                Positioned.fill(
+                  child: AspectRatio(
+                    aspectRatio: _controller.value.aspectRatio,
+                    child: CameraPreview(_controller),
+                  ),
+                ),
                 if (_isRecording)
                   Center(
                     child: Text(
@@ -175,20 +177,20 @@ class _CameraScreenState extends State<CameraScreenFront> {
   }
 }
 
-class NewScreen extends StatelessWidget {
-  final String videoLocation;
+// class NewScreen extends StatelessWidget {
+//   final String videoLocation;
 
-  const NewScreen({Key? key, required this.videoLocation}) : super(key: key);
+//   const NewScreen({Key? key, required this.videoLocation}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('New Screen'),
-      ),
-      body: Center(
-        child: Text('Video Location: $videoLocation'),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('New Screen'),
+//       ),
+//       body: Center(
+//         child: Text('Video Location: $videoLocation'),
+//       ),
+//     );
+//   }
+// }

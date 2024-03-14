@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 
 Map<String, WidgetBuilder> routes = {
   "/": (context) => const LoginPage(),
-  "/select-language": (context) => const Instruction(),
+  "/select-language": (context) => const Splash(),
   "/camera-screen": (context) => CameraScreen(),
   "/camera-screen-front": (context) => CameraScreenFront(),
   "/enter-otp": (context) => const EnterOTP(),
@@ -24,4 +24,5 @@ Map<String, WidgetBuilder> routes = {
   "/chat-onBoard/chat-interface/kyc-verified": (context) => const KycVerified(),
   "/signature": (context) => const SignaturePage(),
   "/biometric": (context) => BiometricScreen(),
+  "/instructions": (context) => const Instruction(),
 };

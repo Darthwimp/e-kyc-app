@@ -135,7 +135,7 @@ class _SignaturePageState extends State<SignaturePage> {
               ),
             GradientButton(
               onPressed: () {
-                Navigator.pushNamed(context, "/kyc-verified");
+                Navigator.pushNamed(context, "/biometric");
               },
               text: "Continue",
             ),

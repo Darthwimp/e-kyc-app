@@ -1,3 +1,5 @@
+import 'package:e_kyc_app/widgets/gradient_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 
@@ -13,18 +15,32 @@ class _BiometricScreenState extends State<BiometricScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Biometric Input'),
-      ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text('Biometric Data: $_biometricData'),
-            SizedBox(height: 20),
-            ElevatedButton(
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 15.0),
+              child: Text(
+                'Fingerprint',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+              ),
+            ),
+            SizedBox(
+                width: 170,
+                height: 170,
+                child: Image.asset("assets/images/fingerprint.png")),
+            Text(
+              '$_biometricData',
+              style: TextStyle(
+                  color: _biometricData == 'Biometric capture failed.'
+                      ? Colors.red
+                      : Colors.green),
+            ),
+            const SizedBox(height: 20),
+            GradientButton(
+              text: 'Capture Biometric'.tr(),
               onPressed: _authenticate,
-              child: Text('Capture Biometric'),
             ),
           ],
         ),
@@ -55,6 +71,10 @@ class _BiometricScreenState extends State<BiometricScreen> {
     if (authenticated) {
       setState(() {
         _biometricData = 'Biometric captured successfully!';
+        Future.delayed(const Duration(seconds: 1)).then((value) {
+          Navigator.pushNamed(
+              context, "/chat-onBoard/chat-interface/kyc-verified");
+        });
       });
     } else {
       setState(() {

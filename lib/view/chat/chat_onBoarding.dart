@@ -37,13 +37,15 @@ class ChatOnboard extends StatelessWidget {
 
               KommunicateFlutterPlugin.buildConversation(conversationObject)
                   .then((result) {
-                print("Conversation builder success: $result"); //result.toString() will be the clientChannelKey
+                print(
+                    "Conversation builder success: $result"); //result.toString() will be the clientChannelKey
               }).catchError((error) {
                 print("Conversation builder error occurred : $error");
               });
-              await Future.delayed(const Duration(seconds: 10)).then((value) {
+              await Future.delayed(const Duration(seconds: 60)).then((value) {
                 KommunicateFlutterPlugin.closeConversationScreen();
-                Navigator.pushNamed(context, "/chat-onBoard/chat-interface/verify-kyc");
+                Navigator.pushNamed(
+                    context, "/chat-onBoard/chat-interface/verify-kyc");
               });
             },
           ),

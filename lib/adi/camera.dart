@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:async';
+import 'package:e_kyc_app/view/verify_kyc/verify_kyc.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:path_provider/path_provider.dart';
@@ -55,16 +56,18 @@ class _CameraScreenState extends State<CameraScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Camera Example'),
-      ),
       body: FutureBuilder<void>(
         future: _initializeControllerFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return Stack(
               children: [
-                CameraPreview(_controller),
+                Positioned.fill(
+                  child: AspectRatio(
+                    aspectRatio: _controller.value.aspectRatio,
+                    child: CameraPreview(_controller),
+                  ),
+                ),
                 Positioned(
                   bottom: 20,
                   left: 20,
@@ -78,38 +81,21 @@ class _CameraScreenState extends State<CameraScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ImagePage(imagePath: imagePath),
+                          // builder: (context) => ImagePage(imagePath: imagePath),
+                          builder: (context) => const VerifyKyc(),
                         ),
                       );
                       ;
                     },
-                    child: Text('Capture Image'),
+                    child: const Text('Capture Image'),
                   ),
                 ),
               ],
             );
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
-      ),
-    );
-  }
-}
-
-class ImagePage extends StatelessWidget {
-  final String imagePath;
-
-  const ImagePage({Key? key, required this.imagePath}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Captured Image'),
-      ),
-      body: Center(
-        child: Text('Image Location: $imagePath'),
       ),
     );
   }

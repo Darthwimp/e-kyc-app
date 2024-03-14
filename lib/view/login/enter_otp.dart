@@ -59,6 +59,23 @@ class EnterOTP extends StatelessWidget {
               ),
             ),
           ),
+          
+          Positioned(
+            bottom: 120.sp,
+            left: 40.sp,
+            right: 40.sp,
+            child: SizedBox(
+              height: 56.h,
+              width: 300.w,
+              child: GradientButton(
+                text: 'Verify OTP'.tr(),
+                onPressed: () {
+                  print("clicked!");
+                  Navigator.pushNamed(context, "/chat-onBoard");
+                },
+              ),
+            ),
+          ),
           Positioned(
             bottom: 50.sp,
             left: 40.sp,
@@ -66,15 +83,21 @@ class EnterOTP extends StatelessWidget {
             child: SizedBox(
               height: 56.h,
               width: 300.w,
-              child: GradientButton(
-                text: 'Submit'.tr(),
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  elevation: MaterialStateProperty.all(0), // Set elevation to 0
+                  backgroundColor: MaterialStateProperty.all(Colors.transparent), // Set background color to transparent
+                ),
                 onPressed: () {
-                  print("clicked!");
-                  Navigator.pushNamed(context, "/verifyKyc");
+                  // Resend OTP logic goes here
                 },
+                child: Text(
+                  'Resend OTP'.tr(),
+                  style: TextStyle(color: Colors.black), // Set text color to black
+                ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

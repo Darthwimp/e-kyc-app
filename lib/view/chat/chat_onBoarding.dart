@@ -24,6 +24,7 @@ class ChatOnboard extends StatelessWidget {
           Text(
             'desc'.tr(),
             style: Theme.of(context).textTheme.bodyMedium,
+            textAlign: TextAlign.center,
           ),
           Gap(40.h),
           GestureDetector(

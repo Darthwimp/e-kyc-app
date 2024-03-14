@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class DocumentVerifyCard extends StatelessWidget {
   const DocumentVerifyCard({
     super.key,
+    this.onPressed,
     required this.icon,
     required this.title,
     required this.subtitle,
@@ -15,6 +14,7 @@ class DocumentVerifyCard extends StatelessWidget {
   final IconData icon;
   final String title;
   final String subtitle;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +43,8 @@ class DocumentVerifyCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(fontWeight: FontWeight.bold, color: Colors.black),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.bold, color: Colors.black),
                 ),
                 Text(
                   subtitle,
@@ -62,7 +60,7 @@ class DocumentVerifyCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: onPressed,
                   icon: const Icon(Icons.arrow_forward_ios),
                 )
               ],

@@ -103,11 +103,7 @@ class _CameraScreenState extends State<CameraScreenFront> {
       print('Video saved: $_videoLocation');
 
       // Navigate to a new screen after saving the video
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => NewScreen(videoLocation: _videoLocation)),
-      );
+      Navigator.pushNamed(context, "/signature");
     } on CameraException catch (e) {
       print(e);
     } on FileSystemException catch (e) {

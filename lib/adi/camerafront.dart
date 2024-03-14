@@ -115,9 +115,6 @@ class _CameraScreenState extends State<CameraScreenFront> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Camera Example'),
-      ),
       body: FutureBuilder<void>(
         future: _initializeControllerFuture,
         builder: (context, snapshot) {
@@ -144,6 +141,7 @@ class _CameraScreenState extends State<CameraScreenFront> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black,
         onPressed: () async {
           if (_isRecording) {
             // If already recording, stop recording
@@ -169,7 +167,10 @@ class _CameraScreenState extends State<CameraScreenFront> {
             });
           }
         },
-        child: Icon(_isRecording ? Icons.stop : Icons.camera),
+        child: Icon(
+          _isRecording ? Icons.stop : Icons.camera,
+          color: Colors.white,
+        ),
       ),
     );
   }

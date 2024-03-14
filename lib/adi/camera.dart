@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:http/http.dart' as http;
 
 class CameraScreen extends StatefulWidget {
   @override
@@ -44,6 +45,15 @@ class _CameraScreenState extends State<CameraScreen> {
       setState(() {
         _imageLocation = imagePath;
       });
+      
+
+      var url1 = Uri.parse("https://api.luxand.cloud/photo/crop");
+      var url2 = Uri.parse("https://api.luxand.cloud/photo/similarity");
+      http.post(url1, body: {
+        "photo": picture,
+      }, headers: {
+        "token": "c4265864de90473e90781a0d43c7bbb5"
+      }).then((value) => print(value));
 
       return imagePath;
     } catch (e) {
@@ -72,16 +82,9 @@ class _CameraScreenState extends State<CameraScreen> {
                     onPressed: () async {
                       // Capture and save image when button is pressed
                       final imagePath = await _captureAndSaveImage();
-                      print('Image saved: $imagePath');
 
-                      // Navigate to new screen with image location
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ImagePage(imagePath: imagePath),
-                        ),
-                      );
-                      ;
+                      print('Image saved: $imagePath');
+                      ImagePath(imagePath1: imagePath);
                     },
                     child: Text('Capture Image'),
                   ),
@@ -97,20 +100,11 @@ class _CameraScreenState extends State<CameraScreen> {
   }
 }
 
-class ImagePage extends StatelessWidget {
-  final String imagePath;
-
-  const ImagePage({Key? key, required this.imagePath}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Captured Image'),
-      ),
-      body: Center(
-        child: Text('Image Location: $imagePath'),
-      ),
-    );
-  }
+class ImagePath {
+  const ImagePath({
+    this.imagePath1,
+    this.imagePath2,
+  });
+  final String? imagePath1;
+  final String? imagePath2;
 }

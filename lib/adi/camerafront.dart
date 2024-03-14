@@ -146,6 +146,7 @@ class _CameraScreenState extends State<CameraScreenFront> {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black,
         onPressed: () async {
           if (_isRecording) {
             // If already recording, stop recording
@@ -171,7 +172,10 @@ class _CameraScreenState extends State<CameraScreenFront> {
             });
           }
         },
-        child: Icon(_isRecording ? Icons.stop : Icons.camera),
+        child: Icon(
+          _isRecording ? Icons.stop : Icons.camera,
+          color: Colors.white,
+        ),
       ),
     );
   }

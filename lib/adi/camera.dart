@@ -4,6 +4,7 @@ import 'package:e_kyc_app/view/verify_kyc/verify_kyc.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:http/http.dart' as http;
 
 class CameraScreen extends StatefulWidget {
   @override
@@ -46,6 +47,14 @@ class _CameraScreenState extends State<CameraScreen> {
         _imageLocation = imagePath;
       });
 
+      var url1 = Uri.parse("https://api.luxand.cloud/photo/crop");
+      var url2 = Uri.parse("https://api.luxand.cloud/photo/similarity");
+      http.post(url1, body: {
+        "photo": picture,
+      }, headers: {
+        "token": "c4265864de90473e90781a0d43c7bbb5"
+      }).then((value) => print(value));
+
       return imagePath;
     } catch (e) {
       print('Error capturing image: $e');
@@ -75,6 +84,7 @@ class _CameraScreenState extends State<CameraScreen> {
                     onPressed: () async {
                       // Capture and save image when button is pressed
                       final imagePath = await _captureAndSaveImage();
+
                       print('Image saved: $imagePath');
 
                       // Navigate to new screen with image location

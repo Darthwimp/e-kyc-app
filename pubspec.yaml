@@ -42,12 +42,12 @@ dependencies:
   provider: ^6.1.2
   signature: ^5.4.1
   kommunicate_flutter: ^1.8.4
-  firebase_app_check: ^0.2.1+18
   twilio_flutter: ^0.3.0
   pinput: ^3.0.0
   camera: ^0.10.5+9
   path_provider: ^2.0.5
   local_auth: ^2.0.1
+  http: ^1.2.1
 
   video_thumbnail: ^0.5.3
   flutter_native_splash: ^2.3.10

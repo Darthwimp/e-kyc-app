@@ -1,4 +1,7 @@
 <manifest xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Add the WRITE_EXTERNAL_STORAGE permission -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:label="e_kyc_app"
         tools:replace="android:label"

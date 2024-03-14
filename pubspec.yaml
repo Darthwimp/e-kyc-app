@@ -44,6 +44,7 @@ dependencies:
   kommunicate_flutter: ^1.8.4
   firebase_app_check: ^0.2.1+18
   twilio_flutter: ^0.3.0
+  pinput: ^3.0.0
 
 dev_dependencies:
   flutter_test:

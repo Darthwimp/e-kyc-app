@@ -23,7 +23,7 @@ class KycVerified extends StatelessWidget {
                 Image.asset("assets/logo/sc-logo-small.png"),
               ],
             ),
-            Image.asset("assets/images/success.png"),
+            Center(child: Image.asset("assets/images/success.png")),
             Gap(20.h),
             Text(
               'Congrats'.tr(),

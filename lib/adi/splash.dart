@@ -1,63 +1,113 @@
 import 'package:e_kyc_app/adi/provider.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:e_kyc_app/widgets/gradient_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class Splash extends StatelessWidget {
-  const Splash({super.key});
+class Splash extends StatefulWidget {
+  const Splash({Key? key}) : super(key: key);
+
+  @override
+  State<Splash> createState() => _SplashState();
+}
+
+class _SplashState extends State<Splash> {
+  String selectedContainer = '';
+
+  void selectContainer(String container) {
+    setState(() {
+      selectedContainer = container;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    //import the provider, so that we can use it on the screen we need
-    final languageProvider = Provider.of<LanguageProvider>(context);
     return Scaffold(
-      body: SafeArea(
+      body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // //using tr() after the keyboard will do things automatically
-            // Text(
-            //   'intro'.tr(),
-            //   style: const TextStyle(fontSize: 20),
-            // ),
-
-            ElevatedButton(
-              onPressed: () {
-                languageProvider.changeLanguage(const Locale('en', 'US'));
-              },
-              child: const Text('English'),
+            Padding(
+              padding: EdgeInsets.only(top: 59.0.sp),
+              child: Text(
+                "Choose your language",
+                style: GoogleFonts.lato(
+                  fontSize: 22.sp,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
             ),
-            ElevatedButton(
-                onPressed: () {
-                  languageProvider.changeLanguage(const Locale('hi', 'IN'));
-                },
-                child: const Text('Hindi')),
-            ElevatedButton(
-                onPressed: () {
-                  languageProvider.changeLanguage(const Locale('bn', 'IN'));
-                },
-                child: const Text('Bengali')),
-            ElevatedButton(
-                onPressed: () {
-                  languageProvider.changeLanguage(const Locale('gj', 'IN'));
-                },
-                child: const Text('Gujratii')),
-            ElevatedButton(
-                onPressed: () {
-                  languageProvider.changeLanguage(const Locale('mr', 'IN'));
-                },
-                child: const Text('Marathi')),
-            ElevatedButton(
-                onPressed: () {
-                  languageProvider.changeLanguage(const Locale('ta', 'IN'));
-                },
-                child: const Text('Tamil')),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, "/");
-              },
-              child: const Text('Next'),
+            Padding(
+              padding: EdgeInsets.only(top: 19.0.sp),
+              child: SizedBox(
+                width: 293.sp,
+                child: Text(
+                  "Select your preferred chat language to proceed",
+                  style: GoogleFonts.lato(
+                    fontSize: 18.sp,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0, bottom: 5.0),
+              child: buildContainer('English', 'en', 'US'),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5.0),
+              child: buildContainer('हिन्दी', 'hi', 'IN'),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5.0),
+              child: buildContainer('বাংলা', 'bn', 'IN'),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5.0),
+              child: buildContainer('मराठी', 'mr', 'IN'),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5.0),
+              child: buildContainer('தமிழ்', 'ta', 'IN'),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 180.0.sp),
+              child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, "/");
+                  },
+                  child: const GradientButton(text: "Continue")),
             )
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildContainer(String text, String a, String b) {
+    final languageProvider = Provider.of<LanguageProvider>(context);
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedContainer = text;
+        });
+        languageProvider.changeLanguage(Locale(a, b));
+      },
+      child: Container(
+        width: 293,
+        height: 50,
+        decoration: BoxDecoration(
+          color: selectedContainer == text ? Colors.lightBlue : Colors.white,
+          border: Border.all(color: Colors.black),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Center(
+          child: Text(text),
         ),
       ),
     );

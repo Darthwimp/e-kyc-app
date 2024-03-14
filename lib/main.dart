@@ -11,9 +11,6 @@ import 'firebase_options.dart';
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 
   runApp(
     EasyLocalization(
@@ -21,7 +18,6 @@ void main(List<String> args) async {
         Locale('en', 'US'),
         Locale('hi', 'IN'),
         Locale('bn', 'IN'),
-        Locale('gj', 'IN'),
         Locale('mr', 'IN'),
         Locale('ta', 'IN'),
       ],
@@ -55,7 +51,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: themeData(),
             routes: routes,
-            initialRoute: "/",
+            initialRoute: "lang",
           );
         },
       ),

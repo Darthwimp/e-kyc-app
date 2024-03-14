@@ -1,9 +1,11 @@
 import 'package:e_kyc_app/widgets/gradient_button.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:pinput/pinput.dart';
 
 class EnterOTP extends StatelessWidget {
   const EnterOTP({super.key});
@@ -16,14 +18,12 @@ class EnterOTP extends StatelessWidget {
           Positioned(
             top: 50.sp,
             left: 30.sp,
-            child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.arrow_back_ios,
-                size: 20.sp,
-                color: Colors.black,
+            child: Container(
+              height: 36.sp,
+              width: 31.sp,
+              child: Image.asset(
+                'assets/logo/logo-without-text.png',
+                fit: BoxFit.contain,
               ),
             ),
           ),
@@ -33,10 +33,14 @@ class EnterOTP extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 30.sp),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    'Verify IY'.tr(),
-                    style: Theme.of(context).textTheme.titleLarge,
+                  Container(
+                    width: 312.sp,
+                    child: Text(
+                      'Verify IY'.tr(),
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
                   ),
                   Gap(10.h),
                   Text(
@@ -44,13 +48,13 @@ class EnterOTP extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
                   Gap(30.h),
-                  // SizedBox(
-                  //   height: 60.h,
-                  //   width: 310.w,
-                  //   child: const Pinput(
-                  //     length: 5,
-                  //   ),
-                  // )
+                  SizedBox(
+                    height: 60.h,
+                    width: 310.w,
+                    child: const Pinput(
+                      length: 5,
+                    ),
+                  )
                 ],
               ),
             ),
@@ -66,7 +70,7 @@ class EnterOTP extends StatelessWidget {
                 text: 'Submit'.tr(),
                 onPressed: () {
                   print("clicked!");
-                  Navigator.pushNamed(context, "/chat-onBoard");
+                  Navigator.pushNamed(context, "/verifyKyc");
                 },
               ),
             ),

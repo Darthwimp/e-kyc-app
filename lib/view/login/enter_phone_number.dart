@@ -1,5 +1,18 @@
 import 'package:e_kyc_app/auth/otp_auth.dart';
+import 'package:e_kyc_app/widgets/gradient_button.dart';
+import 'package:e_kyc_app/widgets/phone_number_field.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
+import 'package:e_kyc_app/widgets/gradient_button.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -7,62 +20,63 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _phoneNumberController = TextEditingController();
+  final phoneNumberController = TextEditingController();
   final _otpController = TextEditingController();
-  String _verificationId = "";
-  bool _verificationInProgress = false;
-
   final OTPAuthClass _otpAuthClass = OTPAuthClass();
-
-  Future<void> _verifyPhoneNumber() async {
-    setState(() {
-      _verificationInProgress = true;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Phone Login'),
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 30.sp),
+        child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              TextField(
-                controller: _phoneNumberController,
-                keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
-                  hintText: 'Enter your phone number',
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Gap(50.sp),
+              Image.asset("assets/logo/logo-without-text.png"),
+              Gap(85.h),
+              Text(
+                'intro'.tr(),
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              Gap(20.h),
+              Text(
+                'mobile number'.tr(),
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              Gap(20.h),
+              Container(
+                height: 60.h,
+                width: 380.w,
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: TextField(
+                  controller: phoneNumberController,
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration(
+                    hintText: ' +91 0123456789',
+                    hintStyle: GoogleFonts.lato(
+                      fontSize: 17.sp,
+                      fontWeight: FontWeight.w400,
+                      color: const Color(0xfe535353),
+                    ),
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.all(10.spMin),
+                  ),
                 ),
               ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _verificationInProgress
-                    ? null
-                    : () {
-                        _otpAuthClass.sendOTP("8676874867");
-                      },
-                child: _verificationInProgress
-                    ? CircularProgressIndicator()
-                    : Text('Send OTP'),
-              ),
-              SizedBox(height: 20),
-              TextField(
-                controller: _otpController,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  hintText: 'Enter OTP',
-                ),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text('Verify OTP'),
-              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 50.0.sp, top: 320.sp),
+                child: GradientButton(
+                    text: 'OTP'.tr(),
+                    onPressed: () {
+                      _otpAuthClass.sendOTP(phoneNumberController.text);
+                      print("clicked!");
+                      Navigator.pushNamed(context, "/enter-otp");
+                    }),
+              )
             ],
           ),
         ),

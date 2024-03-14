@@ -12,7 +12,7 @@ class VerifyKyc extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 22.sp),
+        padding: EdgeInsets.only(left: 22.sp, right: 22.sp, bottom: 50.sp),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -28,11 +28,19 @@ class VerifyKyc extends StatelessWidget {
                 Image.asset("assets/logo/sc-logo-small.png")
               ],
             ),
-            Image.asset("assets/images/assthetic-card.png"),
-            Text('lverify'.tr(), style: Theme.of(context).textTheme.titleLarge),
+            SizedBox(
+                width: 200.w,
+                height: 200.h,
+                child: Image.asset("assets/images/assthetic-card.png")),
+            Text(
+              'lverify'.tr(),
+              style: Theme.of(context).textTheme.titleLarge,
+              textAlign: TextAlign.center,
+            ),
             Text(
               'desc2'.tr(),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(),
+              textAlign: TextAlign.center,
             ),
             DocumentVerifyCard(
               icon: Icons.badge_outlined,
@@ -43,13 +51,12 @@ class VerifyKyc extends StatelessWidget {
               },
             ),
             DocumentVerifyCard(
-              icon: Icons.camera_alt_outlined,
-              title: 'procedure2'.tr(),
-              subtitle: "To match your face to your ID photo",
-              onPressed: () {
-                Navigator.pushNamed(context, "/camera-screen-front");
-              }
-            ),
+                icon: Icons.camera_alt_outlined,
+                title: 'procedure2'.tr(),
+                subtitle: "To match your face to your ID photo",
+                onPressed: () {
+                  Navigator.pushNamed(context, "/camera-screen-front");
+                }),
             Text(
               'why need'.tr(),
               style: GoogleFonts.lato(

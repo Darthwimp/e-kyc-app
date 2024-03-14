@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 
 Map<String, WidgetBuilder> routes = {
   "/": (context) => const LoginPage(),
-  "/select-language": (context) => const Splash(),
+  "/select-language": (context) => CameraScreen(),
   "/camera-screen": (context) => CameraScreen(),
   "/camera-screen-front": (context) => CameraScreenFront(),
   "/enter-otp": (context) => const EnterOTP(),

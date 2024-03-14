@@ -1,4 +1,5 @@
 import 'package:e_kyc_app/adi/camerafront.dart';
+import 'package:e_kyc_app/adi/instructions.dart';
 import 'package:e_kyc_app/adi/splash.dart';
 import 'package:e_kyc_app/adi/camera.dart';
 import 'package:e_kyc_app/view/biometric&signature/Signature.dart';
@@ -12,7 +13,7 @@ import 'package:flutter/material.dart';
 
 Map<String, WidgetBuilder> routes = {
   "/": (context) => const LoginPage(),
-  "/select-language": (context) => const Splash(),
+  "/select-language": (context) => const Instruction(),
   "/camera-screen": (context) => CameraScreen(),
   "/camera-screen-front": (context) => CameraScreenFront(),
   "/enter-otp": (context) => const EnterOTP(),

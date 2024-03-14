@@ -23,18 +23,34 @@ class _SignaturePageState extends State<SignaturePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Signature Pad Example"),
+        title: const Text(
+          "Signature Pad",
+          style: TextStyle(fontSize: 25),
+        ),
       ),
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Signature(
-              controller: controller,
+            Container(
               width: 350,
               height: 200,
-              backgroundColor: Colors.lightBlue[100]!,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black, // Border color
+                  width: 1.0, // Border width
+                ),
+                borderRadius: BorderRadius.circular(8.0), // Border radius
+                color: Colors.white, // Background color
+              ),
+              child: Signature(
+                controller: controller,
+                width: 350,
+                height: 200,
+                backgroundColor: Colors
+                    .transparent, // Set Signature background color to transparent
+              ),
             ),
             SizedBox(
               height: 20,
@@ -44,43 +60,67 @@ class _SignaturePageState extends State<SignaturePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                    padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
+                  child: SizedBox(
+                    width: 155, // Set desired width
+                    height: 50, // Set desired height
                     child: ElevatedButton(
-                        onPressed: () async {
-                          exportedImage = await controller.toPngBytes();
-                          //API
-                          setState(() {});
-                        },
-                        child: const Text(
-                          "Save",
-                          style: TextStyle(fontSize: 20),
+                      onPressed: () async {
+                        exportedImage = await controller.toPngBytes();
+                        //API
+                        setState(() {});
+                      },
+                      child: const Text(
+                        "Save",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
                         ),
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(Colors.red),
-                            shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                    side: BorderSide(color: Colors.red)))))),
+                      ),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Color(0xFF004385)),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
                 Padding(
-                    padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
+                  child: SizedBox(
+                    width: 155, // Set desired width
+                    height: 50, // Set desired height
                     child: ElevatedButton(
-                        onPressed: () {
-                          controller.clear();
-                        },
-                        child: const Text(
-                          "Clear",
-                          style: TextStyle(fontSize: 20),
+                      onPressed: () {
+                        controller.clear();
+                      },
+                      child: const Text(
+                        "Clear",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Color(0xFF0076EB),
                         ),
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(Colors.blue),
-                            shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(18.0),
-                                    side: BorderSide(color: Colors.red)))))),
+                      ),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            side: BorderSide(color: Color(0xFF0076EB)),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
             SizedBox(

@@ -28,23 +28,25 @@ class ChatOnboard extends StatelessWidget {
           ),
           Gap(40.h),
           GestureDetector(
-              child: Image.asset("assets/logo/play-button.png"),
-              onTap: () async {
-                dynamic conversationObject = {
-                  'appId': "27d8a1678cef67181a9a038453fd40c99",
-                  'isSingleConversation': false
-                };
+            child: Image.asset("assets/logo/play-button.png"),
+            onTap: () async {
+              dynamic conversationObject = {
+                'appId': "27d8a1678cef67181a9a038453fd40c99",
+                'isSingleConversation': false
+              };
 
-                KommunicateFlutterPlugin.buildConversation(conversationObject)
-                    .then((result) {
-                  print("Conversation builder success: " +
-                      result
-                          .toString()); //result.toString() will be the clientChannelKey
-                }).catchError((error) {
-                  print("Conversation builder error occurred : " +
-                      error.toString());
-                });
-              }),
+              KommunicateFlutterPlugin.buildConversation(conversationObject)
+                  .then((result) {
+                print("Conversation builder success: $result"); //result.toString() will be the clientChannelKey
+              }).catchError((error) {
+                print("Conversation builder error occurred : $error");
+              });
+              await Future.delayed(const Duration(seconds: 10)).then((value) {
+                KommunicateFlutterPlugin.closeConversationScreen();
+                Navigator.pushNamed(context, "/chat-onBoard/chat-interface/verify-kyc");
+              });
+            },
+          ),
         ],
       ),
     );

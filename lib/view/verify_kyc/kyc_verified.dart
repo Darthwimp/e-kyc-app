@@ -38,7 +38,17 @@ class KycVerified extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             Gap(90.h),
-            const GradientButton(text: "Continue")
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GradientButton(
+                  text: "Continue",
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/chat-onBoard");
+                  },
+                ),
+              ],
+            )
           ],
         ),
       ),

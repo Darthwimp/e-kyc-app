@@ -5,8 +5,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,7 +49,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: themeData(),
             routes: routes,
-            initialRoute: "/lang",
+            initialRoute: "/select-language",
           );
         },
       ),

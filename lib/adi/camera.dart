@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:e_kyc_app/adi/video_thumb.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'dart:io';
@@ -100,11 +101,9 @@ class _CameraScreenState extends State<CameraScreen> {
       print('Video saved: $_videoLocation');
 
       // Navigate to a new screen after saving the video
-      Navigator.push(
+      Navigator.pushNamed(
         context,
-        MaterialPageRoute(
-            builder: (context) => NewScreen(videoLocation: _videoLocation)),
-      );
+       "/verifyKyc");
     } on CameraException catch (e) {
       print(e);
     } on FileSystemException catch (e) {
@@ -167,6 +166,7 @@ class _CameraScreenState extends State<CameraScreen> {
                 }
               });
             });
+            extractFrame(_videoLocation);
           }
         },
         child: Icon(_isRecording ? Icons.stop : Icons.camera),
@@ -175,20 +175,25 @@ class _CameraScreenState extends State<CameraScreen> {
   }
 }
 
-class NewScreen extends StatelessWidget {
-  final String videoLocation;
+// class NewScreen extends StatelessWidget {
+//   final String videoLocation;
 
-  const NewScreen({Key? key, required this.videoLocation}) : super(key: key);
+//   const NewScreen({Key? key, required this.videoLocation}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('New Screen'),
-      ),
-      body: Center(
-        child: Text('Video Location: $videoLocation'),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     try {
+//       extractFrame(videoLocation);
+//     } catch (e) {
+//       throw Exception('Failed to extract frame from video: $e');
+//     }
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('New Screen'),
+//       ),
+//       body: Center(
+//         child: Text('Video Location: $videoLocation'),
+//       ),
+//     );
+//   }
+// }

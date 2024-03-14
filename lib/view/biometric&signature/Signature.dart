@@ -1,3 +1,4 @@
+import 'package:e_kyc_app/widgets/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:signature/signature.dart';
 import 'dart:typed_data';
@@ -131,7 +132,13 @@ class _SignaturePageState extends State<SignaturePage> {
                 exportedImage!,
                 width: 300,
                 height: 250,
-              )
+              ),
+            GradientButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/kyc-verified");
+              },
+              text: "Continue",
+            ),
           ],
         ),
       ),

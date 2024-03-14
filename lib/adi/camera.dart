@@ -101,9 +101,8 @@ class _CameraScreenState extends State<CameraScreen> {
       print('Video saved: $_videoLocation');
 
       // Navigate to a new screen after saving the video
-      Navigator.pushNamed(
-        context,
-       "/verifyKyc");
+      Navigator.pushNamed(context, "/verifyKyc");
+      extractFrame(_videoLocation);
     } on CameraException catch (e) {
       print(e);
     } on FileSystemException catch (e) {
@@ -166,7 +165,6 @@ class _CameraScreenState extends State<CameraScreen> {
                 }
               });
             });
-            extractFrame(_videoLocation);
           }
         },
         child: Icon(_isRecording ? Icons.stop : Icons.camera),

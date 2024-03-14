@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:e_kyc_app/adi/video_thumb.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'dart:io';
@@ -101,7 +102,7 @@ class _CameraScreenState extends State<CameraScreenFront> {
 
       // Print the video location
       print('Video saved: $_videoLocation');
-
+      extractFrame(_videoLocation);
       // Navigate to a new screen after saving the video
       Navigator.pushNamed(context, "/signature");
     } on CameraException catch (e) {

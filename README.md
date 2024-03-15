@@ -5,6 +5,15 @@ This is our attempt of automating the Human Resource intensive Know Your Custome
 # Synopsis
 This is a simple and smooth application with  *User Friendly* UI, with *Multilingual* support for automating and simplifying  the Human Resource intensive Know Your Customer (*KYC*) process. This application defies educational and financial boundaries in the KYC process. 
 
+
+
+
+https://github.com/Darthwimp/e-kyc-app/assets/50353779/4a9c8a93-6df7-4727-b659-5ddc85b63a37
+
+
+
+
+
 # Technologies used
 
 - Flutter & Dart (Front-end)

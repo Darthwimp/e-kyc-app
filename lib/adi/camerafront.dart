@@ -138,6 +138,54 @@ class _CameraScreenState extends State<CameraScreenFront> {
                       ),
                     ),
                   ),
+        Positioned(
+        bottom: 0,
+        left: 0,
+        right: 0,
+        child: Container(
+          height: 160,
+          decoration: BoxDecoration(
+            color: Colors.black,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(40.0),
+            child: ElevatedButton(
+               style: ElevatedButton.styleFrom(
+                          shape: CircleBorder(),
+                        ),
+              onPressed: () async {
+                if (_isRecording) {
+                  // If already recording, stop recording
+                  _stopVideoRecording();
+                } else {
+                  // If not recording, start recording
+                  await _initializeControllerFuture;
+          
+                  // Start video recording
+                  _startVideoRecording();
+          
+                  // Start timer for 10 seconds
+                  Timer.periodic(Duration(seconds: 1), (timer) {
+                    setState(() {
+                      if (_timerCount <= 0) {
+                        timer.cancel();
+                        // Stop video recording after 10 seconds
+                        _stopVideoRecording();
+                      } else {
+                        _timerCount--;
+                      }
+                    });
+                  });
+                }
+              },
+              child: Icon(
+                _isRecording ? Icons.stop : Icons.camera_alt,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ),
+      ),
               ],
             );
           } else {
@@ -145,38 +193,8 @@ class _CameraScreenState extends State<CameraScreenFront> {
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.black,
-        onPressed: () async {
-          if (_isRecording) {
-            // If already recording, stop recording
-            _stopVideoRecording();
-          } else {
-            // If not recording, start recording
-            await _initializeControllerFuture;
-
-            // Start video recording
-            _startVideoRecording();
-
-            // Start timer for 10 seconds
-            Timer.periodic(Duration(seconds: 1), (timer) {
-              setState(() {
-                if (_timerCount <= 0) {
-                  timer.cancel();
-                  // Stop video recording after 10 seconds
-                  _stopVideoRecording();
-                } else {
-                  _timerCount--;
-                }
-              });
-            });
-          }
-        },
-        child: Icon(
-          _isRecording ? Icons.stop : Icons.camera,
-          color: Colors.white,
-        ),
-      ),
+      
+ 
     );
   }
 }

@@ -78,26 +78,42 @@ class _CameraScreenState extends State<CameraScreen> {
                   ),
                 ),
                 Positioned(
-                  bottom: 20,
-                  left: 20,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      // Capture and save image when button is pressed
-                      final imagePath = await _captureAndSaveImage();
-
-                      print('Image saved: $imagePath');
-
-                      // Navigate to new screen with image location
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          // builder: (context) => ImagePage(imagePath: imagePath),
-                          builder: (context) => const VerifyKyc(),
+                  bottom: 0,
+                  left: 0,
+                  right:
+                      0, // Added right property to make the container adapt its width
+                  child: Container(
+                    height: 160,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(40.0),
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          // Capture and save image when button is pressed
+                          final imagePath = await _captureAndSaveImage();
+                      
+                          print('Image saved: $imagePath');
+                      
+                          // Navigate to new screen with image location
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              // builder: (context) => ImagePage(imagePath: imagePath),
+                              builder: (context) => const VerifyKyc(),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: CircleBorder(),
                         ),
-                      );
-                      ;
-                    },
-                    child: const Text('Capture Image'),
+                        child: Icon(
+                          Icons.camera_alt,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],

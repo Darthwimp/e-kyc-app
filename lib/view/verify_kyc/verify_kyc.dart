@@ -51,18 +51,18 @@ class VerifyKyc extends StatelessWidget {
               },
             ),
             DocumentVerifyCard(
-                icon: Icons.camera_alt_outlined,
-                title: 'procedure2'.tr(),
-                subtitle: "To match your face to your ID photo",
-                onPressed: () {
-                  Navigator.pushNamed(context, "/face-image");
-                }),
-            DocumentVerifyCard(
                 icon: Icons.video_call_outlined,
                 title: 'Take a video of you',
                 subtitle: "To check your liveliness",
                 onPressed: () {
                   Navigator.pushNamed(context, "/camera-screen-front");
+                }),
+            DocumentVerifyCard(
+                icon: Icons.camera_alt_outlined,
+                title: 'procedure2'.tr(),
+                subtitle: "To match your face to your ID photo",
+                onPressed: () {
+                  Navigator.pushNamed(context, "/face-image");
                 }),
             Text(
               'why need'.tr(),

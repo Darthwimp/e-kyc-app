@@ -104,7 +104,7 @@ class _CameraScreenState extends State<CameraScreenFront> {
       print('Video saved: $_videoLocation');
       extractFrame(_videoLocation);
       // Navigate to a new screen after saving the video
-      Navigator.pushNamed(context, "/signature");
+      Navigator.pushNamed(context, "/verify-kyc");
     } on CameraException catch (e) {
       print(e);
     } on FileSystemException catch (e) {

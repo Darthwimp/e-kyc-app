@@ -43,6 +43,7 @@ class _FirebaseFaceImageUploaderState extends State<FirebaseFaceImageUploader> {
         _uploadedImageUrl = downloadUrl;
         ImageComparisonRequestModel().setFaceUrl(_uploadedImageUrl);
       });
+      ImageComparisonRequestModel().imageComparisonApiCall(context);
     } catch (e) {
       print('Error uploading image: $e');
     }

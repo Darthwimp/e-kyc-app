@@ -42,7 +42,7 @@ class ChatOnboard extends StatelessWidget {
               }).catchError((error) {
                 print("Conversation builder error occurred : $error");
               });
-              await Future.delayed(const Duration(seconds: 60)).then((value) {
+              await Future.delayed(const Duration(seconds: 5)).then((value) {
                 KommunicateFlutterPlugin.closeConversationScreen();
                 Navigator.pushNamed(
                     context, "/chat-onBoard/chat-interface/verify-kyc");

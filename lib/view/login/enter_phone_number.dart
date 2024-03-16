@@ -13,6 +13,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pinput/pinput.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -23,7 +24,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final phoneNumberController = TextEditingController();
-  final _otpController = TextEditingController();
   final OTPAuthClass _otpAuthClass = OTPAuthClass();
   @override
   Widget build(BuildContext context) {
@@ -70,13 +70,23 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(bottom: 50.0.sp, top: 320.sp),
+                padding: EdgeInsets.only(bottom: 60.0.sp, top: 320.sp),
                 child: GradientButton(
                     text: 'OTP'.tr(),
                     onPressed: () {
-                      _otpAuthClass.sendOTP(phoneNumberController.text);
-                      print("clicked!");
-                      Navigator.pushNamed(context, "/enter-otp");
+                      if (phoneNumberController.length == 10) {
+                        _otpAuthClass.sendOTP(phoneNumberController.text);
+                        print("clicked!");
+                        Navigator.pushNamed(context, "/enter-otp");
+                      } else {
+                        phoneNumberController.clear();
+                        TextInputAction.none;
+                        const snackBar = SnackBar(
+                          backgroundColor: Color(0xfe009999),
+                          content: Text("Please enter a valid phone number"),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
                     }),
               )
             ],

@@ -2,6 +2,7 @@ import 'package:e_kyc_app/auth/otp_auth.dart';
 import 'package:e_kyc_app/widgets/gradient_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
@@ -47,9 +48,9 @@ class KycVerified extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GradientButton(
-                  text: "Continue",
+                  text: "Close The App",
                   onPressed: () {
-                    Navigator.pushNamed(context, "/select-language");
+                    SystemNavigator.pop();
                   },
                 ),
               ],

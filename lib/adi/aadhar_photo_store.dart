@@ -1,15 +1,18 @@
 import 'dart:io';
+import 'package:e_kyc_app/adi/image_comparison.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
-class FirebaseImageUploader extends StatefulWidget {
+class FirebaseAadharImageUploader extends StatefulWidget {
   @override
-  _FirebaseImageUploaderState createState() => _FirebaseImageUploaderState();
+  _FirebaseAadharImageUploaderState createState() =>
+      _FirebaseAadharImageUploaderState();
 }
 
-class _FirebaseImageUploaderState extends State<FirebaseImageUploader> {
+class _FirebaseAadharImageUploaderState
+    extends State<FirebaseAadharImageUploader> {
   late FirebaseStorage _storage;
   late TextEditingController _controller;
   File? _imageFile;
@@ -31,7 +34,7 @@ class _FirebaseImageUploaderState extends State<FirebaseImageUploader> {
 
     try {
       String fileName = _imageFile!.path.split('/').last;
-      Reference ref = _storage.ref().child('images/$fileName');
+      Reference ref = _storage.ref().child('aadhar_image/$fileName');
       UploadTask uploadTask = ref.putFile(_imageFile!);
 
       TaskSnapshot snapshot = await uploadTask;
@@ -39,6 +42,7 @@ class _FirebaseImageUploaderState extends State<FirebaseImageUploader> {
 
       setState(() {
         _uploadedImageUrl = downloadUrl;
+        ImageComparisonRequestModel().setAadharUrl(_uploadedImageUrl);
       });
     } catch (e) {
       print('Error uploading image: $e');
@@ -60,7 +64,7 @@ class _FirebaseImageUploaderState extends State<FirebaseImageUploader> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Firebase Image Uploader'),
+        title: Text('Upload aadhar image'),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20.0),

@@ -47,13 +47,20 @@ class VerifyKyc extends StatelessWidget {
               title: 'procedure1'.tr(),
               subtitle: "To check if your personal information is correct",
               onPressed: () {
-                Navigator.pushNamed(context, "/instructions");
+                Navigator.pushNamed(context, "/aadhar-image");
               },
             ),
             DocumentVerifyCard(
                 icon: Icons.camera_alt_outlined,
                 title: 'procedure2'.tr(),
                 subtitle: "To match your face to your ID photo",
+                onPressed: () {
+                  Navigator.pushNamed(context, "/face-image");
+                }),
+            DocumentVerifyCard(
+                icon: Icons.video_call_outlined,
+                title: 'Take a video of you',
+                subtitle: "To check your liveliness",
                 onPressed: () {
                   Navigator.pushNamed(context, "/camera-screen-front");
                 }),

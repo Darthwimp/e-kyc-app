@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: themeData(),
             routes: routes,
-            initialRoute: "/",
+            initialRoute: "/select-language",
           );
         },
       ),

@@ -1,4 +1,6 @@
+import 'package:e_kyc_app/adi/aadhar_photo_store.dart';
 import 'package:e_kyc_app/adi/camerafront.dart';
+import 'package:e_kyc_app/adi/face_photo_store.dart';
 import 'package:e_kyc_app/adi/instructions.dart';
 import 'package:e_kyc_app/adi/splash.dart';
 import 'package:e_kyc_app/adi/camera.dart';
@@ -25,4 +27,6 @@ Map<String, WidgetBuilder> routes = {
   "/signature": (context) => const SignaturePage(),
   "/biometric": (context) => BiometricScreen(),
   "/instructions": (context) => const Instruction(),
+  "/face-image": (context) => FirebaseFaceImageUploader(),
+  "/aadhar-image": (context) => FirebaseAadharImageUploader()
 };

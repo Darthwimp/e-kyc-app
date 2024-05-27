@@ -8,7 +8,6 @@ This is a simple and smooth application with  *User Friendly* UI, with *Multilin
 
 
 
-https://github.com/Darthwimp/e-kyc-app/assets/50353779/4a9c8a93-6df7-4727-b659-5ddc85b63a37
 
 
 
@@ -33,5 +32,4 @@ https://github.com/Darthwimp/e-kyc-app/assets/50353779/4a9c8a93-6df7-4727-b659-5
 7) Signature Validation
 8) Biometrics Validaton (Fingerprint or FaceID(Apple))
 # Links
-- ## [Demo Video](https://drive.google.com/drive/folders/1h__FjkWPUVB_kJ7ghhaYcWGVBpg62Eje?usp=sharing)
 - ## [Custom API](https://github.com/Rhustish/autokyc)
